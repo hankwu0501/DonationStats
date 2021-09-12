@@ -1,12 +1,11 @@
 package com.gmail.hankwu0501.hook
 
+import com.gmail.hankwu0501.util.PercentImage.getprogress
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.entity.Player
 
 
-
-
-object Placeholder :PlaceholderExpansion(){
+object Placeholder : PlaceholderExpansion() {
     override fun getIdentifier(): String {
         return "donationstats"
     }
@@ -19,11 +18,14 @@ object Placeholder :PlaceholderExpansion(){
         return "1.0"
     }
 
-    override fun onPlaceholderRequest(player: Player?, params: String): String? {
-        var text: String? = null
-        if (params.equals("test", ignoreCase = true)){
-            text = "test1111"
+    override fun onPlaceholderRequest(player: Player?, params: String): String {
+        val text = when (params) {
+            "test" -> "測試拉"
+            "fuck" -> "badbad"
+            else -> {
+                params
+            }
         }
-        return text
+        return getprogress(100, 1500)
     }
 }
